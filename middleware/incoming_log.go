@@ -13,7 +13,7 @@ import (
 
 const (
 	healthCheckPath = "/health"
-	incoming = "INCOMING"
+	incoming        = "INCOMING"
 )
 
 // IncomingLogTrace logs the incoming request and response

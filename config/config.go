@@ -40,7 +40,8 @@ type Config struct {
 	AppConfig         AppConfig
 	LogConfig         LogConfig
 	SentryConfig      SentryConfig
-	WiremockAPIConfig WiremockAPIConfig
+	CoreAuthAPIConfig CoreAuthAPIConfig
+	CoreUserAPIConfig CoreUserAPIConfig
 }
 
 // AppConfig represents the configuration of the application
@@ -61,13 +62,25 @@ type SentryConfig struct {
 	SentryDSN string `env:"SENTRY_DSN"`
 }
 
-// WiremockAPIConfig represents the configuration of the Wiremock API
-type WiremockAPIConfig struct {
-	BaseURL                  string        `env:"WIREMOCK_API_BASE_URL,notEmpty"`
-	Path                     string        `env:"WIREMOCK_API_PATH,notEmpty"`
-	MaxConns                 int           `env:"WIREMOCK_API_MAX_CONNS,notEmpty"`
-	MaxRetry                 int           `env:"WIREMOCK_API_MAX_RETRY,notEmpty"`
-	Timeout                  time.Duration `env:"WIREMOCK_API_TIMEOUT,notEmpty"`
-	InsecureSkipVerify       bool          `env:"WIREMOCK_API_INSECURE_SKIP_VERIFY,notEmpty"`
-	MaxTransactionsPerSecond int           `env:"WIREMOCK_API_MAX_TRANSACTIONS_PER_SECOND"`
+// CoreAuthAPIConfig represents the configuration of the core auth API
+type CoreAuthAPIConfig struct {
+	BaseURL                  string        `env:"CORE_AUTH_API_BASE_URL,notEmpty"`
+	SignupPath               string        `env:"CORE_AUTH_API_SIGNUP_PATH,notEmpty"`
+	DeleteUserPath           string        `env:"CORE_AUTH_API_DELETE_USER_PATH,notEmpty"`
+	MaxConns                 int           `env:"CORE_AUTH_API_MAX_CONNS,notEmpty"`
+	MaxRetry                 int           `env:"CORE_AUTH_API_MAX_RETRY,notEmpty"`
+	Timeout                  time.Duration `env:"CORE_AUTH_API_TIMEOUT,notEmpty"`
+	InsecureSkipVerify       bool          `env:"CORE_AUTH_API_INSECURE_SKIP_VERIFY,notEmpty"`
+	MaxTransactionsPerSecond int           `env:"CORE_AUTH_API_MAX_TRANSACTIONS_PER_SECOND"`
+}
+
+// CoreUserAPIConfig represents the configuration of the core user API
+type CoreUserAPIConfig struct {
+	BaseURL                  string        `env:"CORE_USER_API_BASE_URL,notEmpty"`
+	SignupPath               string        `env:"CORE_USER_API_SIGNUP_PATH,notEmpty"`
+	MaxConns                 int           `env:"CORE_USER_API_MAX_CONNS,notEmpty"`
+	MaxRetry                 int           `env:"CORE_USER_API_MAX_RETRY,notEmpty"`
+	Timeout                  time.Duration `env:"CORE_USER_API_TIMEOUT,notEmpty"`
+	InsecureSkipVerify       bool          `env:"CORE_USER_API_INSECURE_SKIP_VERIFY,notEmpty"`
+	MaxTransactionsPerSecond int           `env:"CORE_USER_API_MAX_TRANSACTIONS_PER_SECOND"`
 }

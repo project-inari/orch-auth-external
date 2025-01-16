@@ -4,7 +4,7 @@ package handler
 import (
 	"github.com/labstack/echo/v4"
 
-	"github.com/orch-auth-external/service"
+	"github.com/project-inari/orch-auth-external/service"
 )
 
 // Dependencies represents the dependencies required by the handler

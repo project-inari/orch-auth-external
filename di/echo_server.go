@@ -13,8 +13,8 @@ import (
 	"github.com/labstack/echo/v4"
 	echoMiddleware "github.com/labstack/echo/v4/middleware"
 
-	"github.com/orch-auth-external/config"
-	"github.com/orch-auth-external/middleware"
+	"github.com/project-inari/orch-auth-external/config"
+	"github.com/project-inari/orch-auth-external/middleware"
 )
 
 func setupServer(ctx context.Context, e *echo.Echo, c *config.Config) {

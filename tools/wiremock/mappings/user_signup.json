@@ -1,13 +1,13 @@
 {
     "request": {
-        "urlPathPattern": "/test",
-        "method": "GET"
+        "urlPathPattern": "/user/v1/signup",
+        "method": "POST"
     },
     "response": {
         "status": 200,
         "headers": {
             "Content-Type": "application/json"
         },
-        "bodyFileName": "test.json"
+        "bodyFileName": "user_signup.json"
     }
 }

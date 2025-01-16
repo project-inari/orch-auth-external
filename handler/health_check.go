@@ -7,7 +7,7 @@ import (
 
 	"github.com/labstack/echo/v4"
 
-	"github.com/orch-auth-external/pkg/response"
+	"github.com/project-inari/orch-auth-external/pkg/response"
 )
 
 // HealthCheck checks the health of the service

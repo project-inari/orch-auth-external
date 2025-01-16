@@ -4,27 +4,30 @@ package service
 import (
 	"context"
 
-	"github.com/orch-auth-external/dto"
-	"github.com/orch-auth-external/repository"
+	"github.com/project-inari/orch-auth-external/dto"
+	"github.com/project-inari/orch-auth-external/repository"
 )
 
 // Port represents the service layer functions
 type Port interface {
-	DoWiremock(ctx context.Context) (*dto.WiremockGetTestResponse, error)
+	SignUp(ctx context.Context, req dto.SignUpReq, h dto.SignUpReqHeader) (*dto.SignUpRes, error)
 }
 
 type service struct {
-	wiremockAPIRepository repository.WiremockAPIRepository
+	coreAuthAPIRepository repository.CoreAuthAPIRepository
+	coreUserAPIRepository repository.CoreUserAPIRepository
 }
 
 // Dependencies represents the dependencies for the service
 type Dependencies struct {
-	WiremockAPIRepository repository.WiremockAPIRepository
+	CoreAuthAPIRepository repository.CoreAuthAPIRepository
+	CoreUserAPIRepository repository.CoreUserAPIRepository
 }
 
 // New creates a new service
 func New(d Dependencies) Port {
 	return &service{
-		wiremockAPIRepository: d.WiremockAPIRepository,
+		coreAuthAPIRepository: d.CoreAuthAPIRepository,
+		coreUserAPIRepository: d.CoreUserAPIRepository,
 	}
 }

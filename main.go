@@ -10,9 +10,9 @@ import (
 
 	"gitlab.com/greyxor/slogor"
 
-	"github.com/orch-auth-external/config"
-	"github.com/orch-auth-external/di"
-	"github.com/orch-auth-external/middleware"
+	"github.com/project-inari/orch-auth-external/config"
+	"github.com/project-inari/orch-auth-external/di"
+	"github.com/project-inari/orch-auth-external/middleware"
 )
 
 func init() {

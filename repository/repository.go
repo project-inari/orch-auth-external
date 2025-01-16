@@ -10,11 +10,11 @@ import (
 
 // CoreAuthAPIRepository represents the repository layer functions of core auth API repository
 type CoreAuthAPIRepository interface {
-	SignUp(ctx context.Context, req dto.CoreAuthSignUpReq, h dto.CoreAuthSignUpReqHeader) (*httpclient.Response[dto.CoreAuthSignUpRes], error)
-	DeleteUser(ctx context.Context, req dto.CoreAuthDeleteUserReq) (*httpclient.Response[dto.CoreAuthDeleteUserRes], error)
+	CallSignUp(ctx context.Context, req dto.CoreAuthSignUpReq, h dto.CoreAuthSignUpReqHeader) (*httpclient.Response[dto.CoreAuthSignUpRes], error)
+	CallDeleteUser(ctx context.Context, req dto.CoreAuthDeleteUserReq) (*httpclient.Response[dto.CoreAuthDeleteUserRes], error)
 }
 
 // CoreUserAPIRepository represents the repository layer functions of core user API repository
 type CoreUserAPIRepository interface {
-	SignUp(ctx context.Context, req dto.CoreUserSignUpReq) (*httpclient.Response[dto.CoreUserSignUpRes], error)
+	CallSignUp(ctx context.Context, req dto.CoreUserSignUpReq) (*httpclient.Response[dto.CoreUserSignUpRes], error)
 }

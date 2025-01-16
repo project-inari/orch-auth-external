@@ -35,8 +35,8 @@ func NewCoreUserAPIRepository(c CoreUserAPIRepositoryConfig, d CoreUserAPIReposi
 	}
 }
 
-// SignUp registers a new user in the core-auth-server service to Firebase
-func (r *coreUserAPIRepository) SignUp(ctx context.Context, req dto.CoreUserSignUpReq) (*httpclient.Response[dto.CoreUserSignUpRes], error) {
+// CallSignUp registers a new user in the core-auth-server service to Firebase
+func (r *coreUserAPIRepository) CallSignUp(ctx context.Context, req dto.CoreUserSignUpReq) (*httpclient.Response[dto.CoreUserSignUpRes], error) {
 	url := fmt.Sprintf("%s%s", r.baseURL, r.signupPath)
 	return httpclient.Post[dto.CoreUserSignUpReq, dto.CoreUserSignUpRes](ctx, r.client, url, map[string]string{}, req)
 }

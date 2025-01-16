@@ -38,14 +38,14 @@ func NewCoreAuthAPIRepository(c CoreAuthAPIRepositoryConfig, d CoreAuthAPIReposi
 	}
 }
 
-// SignUp registers a new user in the core-auth-server service to Firebase
-func (r *coreAuthAPIRepository) SignUp(ctx context.Context, req dto.CoreAuthSignUpReq, h dto.CoreAuthSignUpReqHeader) (*httpclient.Response[dto.CoreAuthSignUpRes], error) {
+// CallSignUp registers a new user in the core-auth-server service to Firebase
+func (r *coreAuthAPIRepository) CallSignUp(ctx context.Context, req dto.CoreAuthSignUpReq, h dto.CoreAuthSignUpReqHeader) (*httpclient.Response[dto.CoreAuthSignUpRes], error) {
 	url := fmt.Sprintf("%s%s", r.baseURL, r.signupPath)
 	return httpclient.Post[dto.CoreAuthSignUpReq, dto.CoreAuthSignUpRes](ctx, r.client, url, h.ToMap(), req)
 }
 
-// DeleteUser deletes a user in the core-auth-server service from Firebase
-func (r *coreAuthAPIRepository) DeleteUser(ctx context.Context, req dto.CoreAuthDeleteUserReq) (*httpclient.Response[dto.CoreAuthDeleteUserRes], error) {
+// CallDeleteUser deletes a user in the core-auth-server service from Firebase
+func (r *coreAuthAPIRepository) CallDeleteUser(ctx context.Context, req dto.CoreAuthDeleteUserReq) (*httpclient.Response[dto.CoreAuthDeleteUserRes], error) {
 	url := fmt.Sprintf("%s%s", r.baseURL, r.deleteUserPath)
 	return httpclient.Delete[dto.CoreAuthDeleteUserReq, dto.CoreAuthDeleteUserRes](ctx, r.client, url, map[string]string{}, req)
 }

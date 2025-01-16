@@ -9,3 +9,16 @@ Accept-Locale: EN
     "password": "test",
     "email": "test@example.com"
 }
+
+POST https://api-system-gateway-alpha.inari-th.com/auth/v1/signup
+X-Api-Key: DDUJYhzdf6vIc2YGkfpXQpvzNJtGL1Bb
+Content-Type: application/json
+Accept-Locale: EN
+{
+    "username": "test",
+    "firstName": "test",
+    "lastName": "test",
+    "phoneNo": "+66600000001",
+    "password": "testpassword",
+    "email": "test@example.com"
+}

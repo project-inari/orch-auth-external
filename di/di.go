@@ -10,11 +10,11 @@ import (
 	"github.com/getsentry/sentry-go"
 	"github.com/labstack/echo/v4"
 
-	"github.com/orch-auth-external/config"
-	"github.com/orch-auth-external/handler"
-	"github.com/orch-auth-external/pkg/httpclient"
-	"github.com/orch-auth-external/repository"
-	"github.com/orch-auth-external/service"
+	"github.com/project-inari/orch-auth-external/config"
+	"github.com/project-inari/orch-auth-external/handler"
+	"github.com/project-inari/orch-auth-external/pkg/httpclient"
+	"github.com/project-inari/orch-auth-external/repository"
+	"github.com/project-inari/orch-auth-external/service"
 )
 
 // New injects the dependencies for the server
@@ -37,25 +37,42 @@ func New(c *config.Config) {
 	setupServer(ctx, e, c)
 
 	// HTTP Client initialization
-	httpClientWiremock := httpclient.NewHTTPClient(httpclient.Options{
-		MaxConns:                 c.WiremockAPIConfig.MaxConns,
-		MaxRetry:                 c.WiremockAPIConfig.MaxRetry,
-		Timeout:                  c.WiremockAPIConfig.Timeout,
-		InsecureSkipVerify:       c.WiremockAPIConfig.InsecureSkipVerify,
-		MaxTransactionsPerSecond: c.WiremockAPIConfig.MaxTransactionsPerSecond,
+	httpClientCoreAuth := httpclient.NewHTTPClient(httpclient.Options{
+		MaxConns:                 c.CoreAuthAPIConfig.MaxConns,
+		MaxRetry:                 c.CoreAuthAPIConfig.MaxRetry,
+		Timeout:                  c.CoreAuthAPIConfig.Timeout,
+		InsecureSkipVerify:       c.CoreAuthAPIConfig.InsecureSkipVerify,
+		MaxTransactionsPerSecond: c.CoreAuthAPIConfig.MaxTransactionsPerSecond,
+	})
+
+	httpClientCoreUser := httpclient.NewHTTPClient(httpclient.Options{
+		MaxConns:                 c.CoreUserAPIConfig.MaxConns,
+		MaxRetry:                 c.CoreUserAPIConfig.MaxRetry,
+		Timeout:                  c.CoreUserAPIConfig.Timeout,
+		InsecureSkipVerify:       c.CoreUserAPIConfig.InsecureSkipVerify,
+		MaxTransactionsPerSecond: c.CoreUserAPIConfig.MaxTransactionsPerSecond,
 	})
 
 	// Repository initialization
-	wiremockAPIRepo := repository.NewWiremockAPIRepository(repository.WiremockAPIRepositoryConfig{
-		BaseURL: c.WiremockAPIConfig.BaseURL,
-		Path:    c.WiremockAPIConfig.Path,
-	}, repository.WiremockAPIRepositoryDependencies{
-		Client: httpClientWiremock,
+	coreAuthAPIRepo := repository.NewCoreAuthAPIRepository(repository.CoreAuthAPIRepositoryConfig{
+		BaseURL:        c.CoreAuthAPIConfig.BaseURL,
+		SignupPath:     c.CoreAuthAPIConfig.SignupPath,
+		DeleteUserPath: c.CoreAuthAPIConfig.DeleteUserPath,
+	}, repository.CoreAuthAPIRepositoryDependencies{
+		Client: httpClientCoreAuth,
+	})
+
+	coreUserAPIRepo := repository.NewCoreUserAPIRepository(repository.CoreUserAPIRepositoryConfig{
+		BaseURL:    c.CoreUserAPIConfig.BaseURL,
+		SignupPath: c.CoreUserAPIConfig.SignupPath,
+	}, repository.CoreUserAPIRepositoryDependencies{
+		Client: httpClientCoreUser,
 	})
 
 	// Service initialization
 	service := service.New(service.Dependencies{
-		WiremockAPIRepository: wiremockAPIRepo,
+		CoreAuthAPIRepository: coreAuthAPIRepo,
+		CoreUserAPIRepository: coreUserAPIRepo,
 	})
 
 	// Handler initialization

@@ -1,5 +1,11 @@
-GET http://localhost:8080/v1/example
+POST http://localhost:8080/v1/signup
 Content-Type: application/json
-
-GET http://localhost:8080/v1/test
-Content-Type: application/json
+Accept-Locale: EN
+{
+    "username": "test",
+    "firstName": "test",
+    "lastName": "test",
+    "phoneNo": "+66000000000",
+    "password": "test",
+    "email": "test@example.com"
+}

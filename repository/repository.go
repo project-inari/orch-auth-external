@@ -4,11 +4,17 @@ package repository
 import (
 	"context"
 
-	"github.com/orch-auth-external/dto"
-	"github.com/orch-auth-external/pkg/httpclient"
+	"github.com/project-inari/orch-auth-external/dto"
+	"github.com/project-inari/orch-auth-external/pkg/httpclient"
 )
 
-// WiremockAPIRepository represents the repository layer functions of wiremock API repository
-type WiremockAPIRepository interface {
-	GetTest(ctx context.Context, h dto.WiremockGetTestHeader) (*httpclient.Response[dto.WiremockGetTestResponse], error)
+// CoreAuthAPIRepository represents the repository layer functions of core auth API repository
+type CoreAuthAPIRepository interface {
+	SignUp(ctx context.Context, req dto.CoreAuthSignUpReq, h dto.CoreAuthSignUpReqHeader) (*httpclient.Response[dto.CoreAuthSignUpRes], error)
+	DeleteUser(ctx context.Context, req dto.CoreAuthDeleteUserReq) (*httpclient.Response[dto.CoreAuthDeleteUserRes], error)
+}
+
+// CoreUserAPIRepository represents the repository layer functions of core user API repository
+type CoreUserAPIRepository interface {
+	SignUp(ctx context.Context, req dto.CoreUserSignUpReq) (*httpclient.Response[dto.CoreUserSignUpRes], error)
 }

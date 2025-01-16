@@ -1,0 +1,13 @@
+{
+    "request": {
+        "urlPathPattern": "/auth/v1/signup",
+        "method": "POST"
+    },
+    "response": {
+        "status": 200,
+        "headers": {
+            "Content-Type": "application/json"
+        },
+        "bodyFileName": "auth_signup.json"
+    }
+}

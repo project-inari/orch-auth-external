@@ -87,8 +87,8 @@ func Patch[REQ, RES any](ctx context.Context, client *http.Client, url string, h
 }
 
 // Delete sends a DELETE request to the given URL
-func Delete[RES any](ctx context.Context, client *http.Client, url string, header map[string]string) (*Response[RES], error) {
-	return Do[bytes.Buffer, RES](ctx, client, http.MethodDelete, url, header, bytes.Buffer{})
+func Delete[REQ, RES any](ctx context.Context, client *http.Client, url string, header map[string]string, payload REQ) (*Response[RES], error) {
+	return Do[REQ, RES](ctx, client, http.MethodDelete, url, header, payload)
 }
 
 // Response represents the response from the HTTP client with status code and response body

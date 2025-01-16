@@ -1,4 +1,4 @@
-module github.com/orch-auth-external
+module github.com/project-inari/orch-auth-external
 
 go 1.23.0
 

@@ -38,33 +38,33 @@ func New(c *config.Config) {
 
 	// HTTP Client initialization
 	httpClientCoreAuth := httpclient.NewHTTPClient(httpclient.Options{
-		MaxConns:                 c.CoreAuthAPIConfig.MaxConns,
-		MaxRetry:                 c.CoreAuthAPIConfig.MaxRetry,
-		Timeout:                  c.CoreAuthAPIConfig.Timeout,
-		InsecureSkipVerify:       c.CoreAuthAPIConfig.InsecureSkipVerify,
-		MaxTransactionsPerSecond: c.CoreAuthAPIConfig.MaxTransactionsPerSecond,
+		MaxConns:                 c.APICoreAuthConfig.MaxConns,
+		MaxRetry:                 c.APICoreAuthConfig.MaxRetry,
+		Timeout:                  c.APICoreAuthConfig.Timeout,
+		InsecureSkipVerify:       c.APICoreAuthConfig.InsecureSkipVerify,
+		MaxTransactionsPerSecond: c.APICoreAuthConfig.MaxTransactionsPerSecond,
 	})
 
 	httpClientCoreUser := httpclient.NewHTTPClient(httpclient.Options{
-		MaxConns:                 c.CoreUserAPIConfig.MaxConns,
-		MaxRetry:                 c.CoreUserAPIConfig.MaxRetry,
-		Timeout:                  c.CoreUserAPIConfig.Timeout,
-		InsecureSkipVerify:       c.CoreUserAPIConfig.InsecureSkipVerify,
-		MaxTransactionsPerSecond: c.CoreUserAPIConfig.MaxTransactionsPerSecond,
+		MaxConns:                 c.APICoreUserConfig.MaxConns,
+		MaxRetry:                 c.APICoreUserConfig.MaxRetry,
+		Timeout:                  c.APICoreUserConfig.Timeout,
+		InsecureSkipVerify:       c.APICoreUserConfig.InsecureSkipVerify,
+		MaxTransactionsPerSecond: c.APICoreUserConfig.MaxTransactionsPerSecond,
 	})
 
 	// Repository initialization
 	coreAuthAPIRepo := repository.NewCoreAuthAPIRepository(repository.CoreAuthAPIRepositoryConfig{
-		BaseURL:        c.CoreAuthAPIConfig.BaseURL,
-		SignupPath:     c.CoreAuthAPIConfig.SignupPath,
-		DeleteUserPath: c.CoreAuthAPIConfig.DeleteUserPath,
+		BaseURL:        c.APICoreAuthConfig.BaseURL,
+		SignupPath:     c.APICoreAuthConfig.SignupPath,
+		DeleteUserPath: c.APICoreAuthConfig.DeleteUserPath,
 	}, repository.CoreAuthAPIRepositoryDependencies{
 		Client: httpClientCoreAuth,
 	})
 
 	coreUserAPIRepo := repository.NewCoreUserAPIRepository(repository.CoreUserAPIRepositoryConfig{
-		BaseURL:    c.CoreUserAPIConfig.BaseURL,
-		SignupPath: c.CoreUserAPIConfig.SignupPath,
+		BaseURL:    c.APICoreUserConfig.BaseURL,
+		SignupPath: c.APICoreUserConfig.SignupPath,
 	}, repository.CoreUserAPIRepositoryDependencies{
 		Client: httpClientCoreUser,
 	})

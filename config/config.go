@@ -40,8 +40,8 @@ type Config struct {
 	AppConfig         AppConfig
 	LogConfig         LogConfig
 	SentryConfig      SentryConfig
-	CoreAuthAPIConfig CoreAuthAPIConfig
-	CoreUserAPIConfig CoreUserAPIConfig
+	APICoreAuthConfig APICoreAuthConfig
+	APICoreUserConfig APICoreUserConfig
 }
 
 // AppConfig represents the configuration of the application
@@ -62,25 +62,25 @@ type SentryConfig struct {
 	SentryDSN string `env:"SENTRY_DSN"`
 }
 
-// CoreAuthAPIConfig represents the configuration of the core auth API
-type CoreAuthAPIConfig struct {
-	BaseURL                  string        `env:"CORE_AUTH_API_BASE_URL,notEmpty"`
-	SignupPath               string        `env:"CORE_AUTH_API_SIGNUP_PATH,notEmpty"`
-	DeleteUserPath           string        `env:"CORE_AUTH_API_DELETE_USER_PATH,notEmpty"`
-	MaxConns                 int           `env:"CORE_AUTH_API_MAX_CONNS,notEmpty"`
-	MaxRetry                 int           `env:"CORE_AUTH_API_MAX_RETRY,notEmpty"`
-	Timeout                  time.Duration `env:"CORE_AUTH_API_TIMEOUT,notEmpty"`
-	InsecureSkipVerify       bool          `env:"CORE_AUTH_API_INSECURE_SKIP_VERIFY,notEmpty"`
-	MaxTransactionsPerSecond int           `env:"CORE_AUTH_API_MAX_TRANSACTIONS_PER_SECOND"`
+// APICoreAuthConfig represents the configuration of the core auth API
+type APICoreAuthConfig struct {
+	BaseURL                  string        `env:"API_CORE_AUTH_BASE_URL,notEmpty"`
+	SignupPath               string        `env:"API_CORE_AUTH_SIGNUP_PATH,notEmpty"`
+	DeleteUserPath           string        `env:"API_CORE_AUTH_DELETE_USER_PATH,notEmpty"`
+	MaxConns                 int           `env:"API_CORE_AUTH_MAX_CONNS,notEmpty"`
+	MaxRetry                 int           `env:"API_CORE_AUTH_MAX_RETRY"`
+	Timeout                  time.Duration `env:"API_CORE_AUTH_TIMEOUT,notEmpty"`
+	InsecureSkipVerify       bool          `env:"API_CORE_AUTH_INSECURE_SKIP_VERIFY,notEmpty"`
+	MaxTransactionsPerSecond int           `env:"API_CORE_AUTH_MAX_TRANSACTIONS_PER_SECOND"`
 }
 
-// CoreUserAPIConfig represents the configuration of the core user API
-type CoreUserAPIConfig struct {
-	BaseURL                  string        `env:"CORE_USER_API_BASE_URL,notEmpty"`
-	SignupPath               string        `env:"CORE_USER_API_SIGNUP_PATH,notEmpty"`
-	MaxConns                 int           `env:"CORE_USER_API_MAX_CONNS,notEmpty"`
-	MaxRetry                 int           `env:"CORE_USER_API_MAX_RETRY,notEmpty"`
-	Timeout                  time.Duration `env:"CORE_USER_API_TIMEOUT,notEmpty"`
-	InsecureSkipVerify       bool          `env:"CORE_USER_API_INSECURE_SKIP_VERIFY,notEmpty"`
-	MaxTransactionsPerSecond int           `env:"CORE_USER_API_MAX_TRANSACTIONS_PER_SECOND"`
+// APICoreUserConfig represents the configuration of the core user API
+type APICoreUserConfig struct {
+	BaseURL                  string        `env:"API_CORE_USER_BASE_URL,notEmpty"`
+	SignupPath               string        `env:"API_CORE_USER_SIGNUP_PATH,notEmpty"`
+	MaxConns                 int           `env:"API_CORE_USER_MAX_CONNS,notEmpty"`
+	MaxRetry                 int           `env:"API_CORE_USER_MAX_RETRY"`
+	Timeout                  time.Duration `env:"API_CORE_USER_TIMEOUT,notEmpty"`
+	InsecureSkipVerify       bool          `env:"API_CORE_USER_INSECURE_SKIP_VERIFY,notEmpty"`
+	MaxTransactionsPerSecond int           `env:"API_CORE_USER_MAX_TRANSACTIONS_PER_SECOND"`
 }
